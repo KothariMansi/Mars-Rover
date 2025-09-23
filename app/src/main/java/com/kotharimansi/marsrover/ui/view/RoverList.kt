@@ -1,6 +1,7 @@
 package com.kotharimansi.marsrover.ui.view
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,13 +28,14 @@ import com.kotharimansi.marsrover.ui.theme.MarsRoverTheme
 
 @Composable
 fun RoverList(
+    onCLick: (roverName: String) -> Unit
 ) {
     Scaffold(
         contentColor = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()
     ) { paddingValues ->
         LazyColumn(modifier = Modifier.padding(paddingValues)) {
             items(roverUIModelList) {
-                Rover(name = it.name, image = it.image, landingDate = it.landingDate, distance = it.distance)
+                Rover(name = it.name, image = it.image, landingDate = it.landingDate, distance = it.distance, onCLick)
             }
         }
     }
@@ -44,10 +46,11 @@ fun Rover(
     name: String,
     image: Int,
     landingDate: String,
-    distance: String
+    distance: String,
+    onCLick: (roverName: String) -> Unit
 ) {
     Card(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.padding(16.dp).clickable { onCLick(name) }
     ) {
         Column(
             modifier = Modifier.padding(16.dp)
@@ -80,7 +83,7 @@ fun RoverPreview() {
             name = "Perseverance",
             image = R.drawable.rover,
             landingDate = "18 February 2021",
-            distance =  "12.56 km"
-        )
+            distance =  "12.56 km",
+        ) {}
     }
 }
