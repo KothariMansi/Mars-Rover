@@ -6,5 +6,5 @@ data class ManifestPhotoRemoteModel(
     val cameras: List<String>,
     @SerialName("earth_date") val earthDate: String,
     val sol: Int,
-    @SerialName("total_photos") val totalPhots: Int
+    @SerialName("total_photos") val totalPhotos: Int
 )

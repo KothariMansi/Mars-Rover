@@ -8,6 +8,6 @@ data class PhotoManifestRemoteModel(
     @SerialName("max_date") val maxDate: String,
     @SerialName("max_sol") val maxSol: String,
     val name: String,
-    @SerialName("photo") val photo: List<ManifestPhotoRemoteModel>,
+    @SerialName("photos") val photos: List<ManifestPhotoRemoteModel>,
     @SerialName("total_photos") val totalPhoto: Int
 )
