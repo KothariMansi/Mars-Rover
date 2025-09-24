@@ -1,7 +1,7 @@
 package com.kotharimansi.marsrover.service.model
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 data class RoverManifestRemoteModel(
-    @SerialName("photo_manifest") val photoManifest: PhotoManifestRemoteModel
+    @SerializedName("photo_manifest") val photoManifest: PhotoManifestRemoteModel
 )

@@ -1,13 +1,13 @@
 package com.kotharimansi.marsrover.service.model
 
-import kotlinx.serialization.SerialName
+import com.google.gson.annotations.SerializedName
 
 data class PhotoManifestRemoteModel(
-    @SerialName("landing_date") val landingDate: String,
-    @SerialName("launch_date") val launchDate: String,
-    @SerialName("max_date") val maxDate: String,
-    @SerialName("max_sol") val maxSol: String,
+    @SerializedName("landing_date") val landingDate: String,
+    @SerializedName("launch_date") val launchDate: String,
+    @SerializedName("max_date") val maxDate: String,
+    @SerializedName("max_sol") val maxSol: Int,
     val name: String,
-    @SerialName("photos") val photos: List<ManifestPhotoRemoteModel>,
-    @SerialName("total_photos") val totalPhoto: Int
+    @SerializedName("photos") val photos: List<ManifestPhotoRemoteModel>,
+    @SerializedName("total_photos") val totalPhotos: Int
 )
