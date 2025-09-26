@@ -10,7 +10,8 @@ import com.kotharimansi.marsrover.ui.manifestlist.MarsRoverManifestViewModel
 @Composable
 fun ManifestScreen(
     roverName: String?,
-    marsRoverManifestViewModel: MarsRoverManifestViewModel
+    marsRoverManifestViewModel: MarsRoverManifestViewModel,
+    onCLick: (roverName: String, sol: String) -> Unit
 ) {
     val viewState by marsRoverManifestViewModel.roverManifestUIState.collectAsState()
     if (roverName != null) {
@@ -20,7 +21,10 @@ fun ManifestScreen(
         when (val roverManifestUIState = viewState) {
             RoverManifestUIState.Error -> Error()
             RoverManifestUIState.Loading -> Loading()
-            is RoverManifestUIState.Success -> ManifestList(roverManifestUIModelList = roverManifestUIState.roverManifestUIModel)
+            is RoverManifestUIState.Success -> ManifestList(
+                roverManifestUIModelList = roverManifestUIState.roverManifestUIModel, roverName = roverName,
+                onCLick = onCLick
+            )
         }
     }
 }

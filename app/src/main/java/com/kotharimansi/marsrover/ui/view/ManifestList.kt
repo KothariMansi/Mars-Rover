@@ -22,14 +22,16 @@ import com.kotharimansi.marsrover.ui.theme.MarsRoverTheme
 
 @Composable
 fun ManifestList(
-    roverManifestUIModelList: List<RoverManifestUIModel>
+    roverManifestUIModelList: List<RoverManifestUIModel>,
+    roverName: String,
+    onCLick: (roverName: String, sol: String) -> Unit
 ) {
     Scaffold(
         contentColor = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()
     ) { paddingValues ->
         LazyColumn(modifier = Modifier.padding(paddingValues)) {
             items(roverManifestUIModelList) {
-                Manifest(it)
+                Manifest(it, roverName, onCLick)
             }
         }
     }
@@ -37,9 +39,13 @@ fun ManifestList(
 
 @Composable
 fun Manifest(
-    roverManifestUIModel: RoverManifestUIModel
+    roverManifestUIModel: RoverManifestUIModel,
+    roverName: String,
+    onCLick: (roverName: String, sol: String) -> Unit
 ) {
-    Card(modifier = Modifier.padding(16.dp).fillMaxWidth().clickable{}) {
+    Card(modifier = Modifier.padding(16.dp).fillMaxWidth().clickable{
+        onCLick(roverName, roverManifestUIModel.sol)
+    }) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = stringResource(R.string.sol, roverManifestUIModel.sol))
             Text(text = stringResource(R.string.earth_date, roverManifestUIModel.earthDate))
@@ -52,10 +58,13 @@ fun Manifest(
 @Composable
 fun ManifestPreview() {
     MarsRoverTheme {
-        Manifest(RoverManifestUIModel(
-            sol = "1000",
-            earthDate = "2021-03-04",
-            photoNumber = "5"
-        ))
+        Manifest(
+            RoverManifestUIModel(
+                sol = "1000",
+                earthDate = "2021-03-04",
+                photoNumber = "5"
+            ),
+            roverName = ""
+        ) { _, _ -> }
     }
 }

@@ -10,6 +10,7 @@ import com.kotharimansi.marsrover.nav.Actions
 import com.kotharimansi.marsrover.nav.Destinations
 import com.kotharimansi.marsrover.ui.theme.MarsRoverTheme
 import com.kotharimansi.marsrover.ui.view.ManifestScreen
+import com.kotharimansi.marsrover.ui.view.PhotoScreen
 import com.kotharimansi.marsrover.ui.view.RoverList
 
 @Composable
@@ -25,7 +26,15 @@ fun NavCompose() {
             composable(Destinations.MANIFEST) { backStackEntry ->
                 ManifestScreen(
                     roverName = backStackEntry.arguments?.getString("roverName"),
-                    marsRoverManifestViewModel = hiltViewModel()
+                    marsRoverManifestViewModel = hiltViewModel(),
+                    onCLick = { roverName, sol -> actions.photo(roverName, sol) }
+                )
+            }
+            composable(Destinations.PHOTO) { backStackEntry ->
+                PhotoScreen(
+                    roverName = backStackEntry.arguments?.getString("roverName"),
+                    sol = backStackEntry.arguments?.getString("sol"),
+                    marsRoverPhotoViewModel = hiltViewModel()
                 )
             }
         }
