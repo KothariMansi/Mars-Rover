@@ -22,12 +22,13 @@ import com.kotharimansi.marsrover.ui.theme.MarsRoverTheme
 
 @Composable
 fun ManifestList(
+    modifier: Modifier,
     roverManifestUIModelList: List<RoverManifestUIModel>,
     roverName: String,
     onCLick: (roverName: String, sol: String) -> Unit
 ) {
     Scaffold(
-        contentColor = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()
+        contentColor = MaterialTheme.colorScheme.background, modifier = modifier.fillMaxSize()
     ) { paddingValues ->
         LazyColumn(modifier = Modifier.padding(paddingValues)) {
             items(roverManifestUIModelList) {

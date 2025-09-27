@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import com.kotharimansi.marsrover.domain.model.RoverPhotoUiState
 import com.kotharimansi.marsrover.ui.photolist.MarsRoverPhotoViewModel
 
@@ -11,7 +12,8 @@ import com.kotharimansi.marsrover.ui.photolist.MarsRoverPhotoViewModel
 fun PhotoScreen(
     roverName: String?,
     sol: String?,
-    marsRoverPhotoViewModel: MarsRoverPhotoViewModel
+    marsRoverPhotoViewModel: MarsRoverPhotoViewModel,
+    modifier: Modifier
 ) {
     val photoState by marsRoverPhotoViewModel.roverPhotoUiState.collectAsState()
     if (roverName != null && sol != null) {
@@ -22,6 +24,6 @@ fun PhotoScreen(
     when(val roverPhotoUiState = photoState) {
         RoverPhotoUiState.Error -> Error()
         RoverPhotoUiState.Loading -> Loading()
-        is RoverPhotoUiState.Success -> PhotoList(roverPhotoUIModels = roverPhotoUiState.roverPhotoUiModelList)
+        is RoverPhotoUiState.Success -> PhotoList(modifier = modifier,roverPhotoUIModels = roverPhotoUiState.roverPhotoUiModelList)
     }
 }

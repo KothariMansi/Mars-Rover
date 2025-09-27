@@ -5,4 +5,6 @@
     <string name="sol">Sol: %s</string>
     <string name="earth_date">Earth Date: %s</string>
     <string name="number_of_photo">Photo Number: %s</string>
+    <string name="rover">Rover</string>
+    <string name="saved">Saved</string>
 </resources>

@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
 import com.kotharimansi.marsrover.domain.model.RoverManifestUIState
 import com.kotharimansi.marsrover.ui.manifestlist.MarsRoverManifestViewModel
 
@@ -11,7 +12,8 @@ import com.kotharimansi.marsrover.ui.manifestlist.MarsRoverManifestViewModel
 fun ManifestScreen(
     roverName: String?,
     marsRoverManifestViewModel: MarsRoverManifestViewModel,
-    onCLick: (roverName: String, sol: String) -> Unit
+    onCLick: (roverName: String, sol: String) -> Unit,
+    modifier: Modifier
 ) {
     val viewState by marsRoverManifestViewModel.roverManifestUIState.collectAsState()
     if (roverName != null) {
@@ -22,6 +24,7 @@ fun ManifestScreen(
             RoverManifestUIState.Error -> Error()
             RoverManifestUIState.Loading -> Loading()
             is RoverManifestUIState.Success -> ManifestList(
+                modifier = modifier,
                 roverManifestUIModelList = roverManifestUIState.roverManifestUIModel, roverName = roverName,
                 onCLick = onCLick
             )

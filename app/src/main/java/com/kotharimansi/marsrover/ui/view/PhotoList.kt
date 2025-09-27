@@ -22,11 +22,12 @@ import com.kotharimansi.marsrover.domain.model.RoverPhotoUIModel
 
 @Composable
 fun PhotoList(
+    modifier: Modifier,
     roverPhotoUIModels: List<RoverPhotoUIModel>
 ) {
 
     Scaffold(modifier = Modifier, containerColor = MaterialTheme.colorScheme.background) { paddingValues ->
-        LazyColumn(modifier = Modifier.padding(paddingValues = paddingValues)) {
+        LazyColumn(modifier = modifier.padding(paddingValues = paddingValues)) {
             items(roverPhotoUIModels) { roverPhotoUIModel ->
                 Photo(roverPhotoUIModel)
             }

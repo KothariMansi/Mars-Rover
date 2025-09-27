@@ -28,10 +28,11 @@ import com.kotharimansi.marsrover.ui.theme.MarsRoverTheme
 
 @Composable
 fun RoverList(
+    modifier: Modifier,
     onCLick: (roverName: String) -> Unit
 ) {
     Scaffold(
-        contentColor = MaterialTheme.colorScheme.background, modifier = Modifier.fillMaxSize()
+        contentColor = MaterialTheme.colorScheme.background, modifier = modifier.fillMaxSize()
     ) { paddingValues ->
         LazyColumn(modifier = Modifier.padding(paddingValues)) {
             items(roverUIModelList) {
