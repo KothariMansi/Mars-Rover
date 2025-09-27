@@ -77,4 +77,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
+
+    // Coil
+    implementation("io.coil-kt.coil3:coil-compose:3.3.0")
 }

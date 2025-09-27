@@ -1,8 +1,10 @@
 package com.kotharimansi.marsrover.ui.view
 
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import com.kotharimansi.marsrover.domain.model.RoverPhotoUiState
 import com.kotharimansi.marsrover.ui.photolist.MarsRoverPhotoViewModel
 
 @Composable
@@ -11,10 +13,15 @@ fun PhotoScreen(
     sol: String?,
     marsRoverPhotoViewModel: MarsRoverPhotoViewModel
 ) {
+    val photoState by marsRoverPhotoViewModel.roverPhotoUiState.collectAsState()
     if (roverName != null && sol != null) {
         LaunchedEffect(Unit) {
             marsRoverPhotoViewModel.getMarsRoverPhoto(roverName, sol)
         }
     }
-    Text(text = "Photo Screen")
+    when(val roverPhotoUiState = photoState) {
+        RoverPhotoUiState.Error -> Error()
+        RoverPhotoUiState.Loading -> Loading()
+        is RoverPhotoUiState.Success -> PhotoList(roverPhotoUIModels = roverPhotoUiState.roverPhotoUiModelList)
+    }
 }
