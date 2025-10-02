@@ -22,8 +22,12 @@ fun PhotoScreen(
         }
     }
     when(val roverPhotoUiState = photoState) {
-        RoverPhotoUiState.Error -> Error()
-        RoverPhotoUiState.Loading -> Loading()
-        is RoverPhotoUiState.Success -> PhotoList(modifier = modifier,roverPhotoUIModels = roverPhotoUiState.roverPhotoUiModelList)
+        is RoverPhotoUiState.Error -> Error()
+        is RoverPhotoUiState.Loading -> Loading()
+        is RoverPhotoUiState.Success -> PhotoList(
+            modifier = modifier,roverPhotoUIModels = roverPhotoUiState.roverPhotoUiModelList
+        ) { roverPhotoUIModel ->
+            marsRoverPhotoViewModel.changeSaveStatus(roverPhotoUIModel)
+        }
     }
 }

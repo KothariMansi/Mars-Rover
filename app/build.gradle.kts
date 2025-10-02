@@ -80,4 +80,8 @@ dependencies {
 
     // Coil
     implementation("io.coil-kt.coil3:coil-compose:3.3.0")
+
+    // Room
+    kapt("androidx.room:room-compiler:2.8.1")
+    implementation("androidx.room:room-ktx:2.8.1")
 }

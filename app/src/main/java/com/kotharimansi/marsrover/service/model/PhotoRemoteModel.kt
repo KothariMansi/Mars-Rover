@@ -8,5 +8,5 @@ data class PhotoRemoteModel(
     val id: Int,
     @SerializedName("img_src") val imgSrc: String,
     val rover: RoverRemoteModel,
-    val sol: String
+    val sol: Int
 )
