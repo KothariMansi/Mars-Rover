@@ -19,4 +19,7 @@ interface MarsRoverSavedPhotoDao {
     @Query("SELECT rover_photo_id FROM rover_photo WHERE sol = :sol AND rover_name = :roverName")
     fun allSavedId(sol: String, roverName: String): Flow<List<Int>>
 
+    @Query("SELECT * FROM rover_photo ORDER BY earth_date DESC")
+    fun getAllSaved(): Flow<List<MarsRoverSavedLocalModel>>
+
 }

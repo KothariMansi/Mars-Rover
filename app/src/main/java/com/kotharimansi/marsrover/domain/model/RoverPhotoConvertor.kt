@@ -12,3 +12,15 @@ fun toDBModel(roverPhotoUIModel: RoverPhotoUIModel): MarsRoverSavedLocalModel {
         cameraFullName = roverPhotoUIModel.cameraFullName
     )
 }
+
+fun toUIModel(marsRoverSavedLocalModelList: List<MarsRoverSavedLocalModel>) = marsRoverSavedLocalModelList.map { photo->
+    RoverPhotoUIModel(
+        id = photo.roverPhotoId,
+        roverName = photo.roverName,
+        imgSrc = photo.imgSrc,
+        sol = photo.sol,
+        earthDate = photo.earthDate,
+        cameraFullName = photo.cameraFullName,
+        isSaved = true
+    )
+}
